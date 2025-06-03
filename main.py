@@ -6,11 +6,14 @@ from fastapi.responses import JSONResponse
 from containers import Container
 import uvicorn
 from note.interface.controllers.note_controller import router as note_routers
+from middlewares import create_middlewares
+
+
 app = FastAPI()
 app.include_router(user_routers)
 app.include_router(note_routers)
 app.container = Container()
-
+create_middlewares(app)
 @app.exception_handler(RequestValidationError) # 핸들러 등록
 async def validation_exception_handler(
     request: Request,
