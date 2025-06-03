@@ -1,2 +1,2 @@
-# TIL_Proj
-This is TIl Project with fastapi
+# README FILE
+This repo is TIL Project using FastAPI for practicing
