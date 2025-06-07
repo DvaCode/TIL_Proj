@@ -15,6 +15,10 @@ SECRET_KEY = "THIS_IS_SUPER_SECRET_KEY"
 ALGORITHM = "HS256"
 SECRET_KEY = settings.jwt_secret
 
+class Role(StrEnum):
+    ADMIN = "ADMIN"
+    USER = "USER"
+
 @dataclass
 class CurrentUser:
     id: str
@@ -43,10 +47,6 @@ def decode_access_token(token: str):
     except JWTError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     
-class Role(StrEnum):
-    ADMIN = "ADMIN"
-    USER = "USER"
-
 def create_access_token(
     payload: dict,
     role: Role,
